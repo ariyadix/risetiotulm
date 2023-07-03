@@ -145,10 +145,10 @@ $waktu = date('H:i:s');
                             <canvas id="tegangan_ina" style="max-height: 320px;"></canvas>
                             <select name="tegangan_ina_filter" class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                                <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -160,10 +160,10 @@ $waktu = date('H:i:s');
                             <canvas id="ina_arus" style="max-height: 320px;"></canvas>
                             <select name="arus_ina_filter" class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                                 <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -177,10 +177,10 @@ $waktu = date('H:i:s');
                             <canvas id="max_tegangan" style="max-height: 320px;"></canvas>
                             <select name="max_tegangan_filter" class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                                 <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -192,10 +192,10 @@ $waktu = date('H:i:s');
                             <canvas id="max_arus" style="max-height: 320px;"></canvas>
                             <select name="max_arus_filter"  class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                                <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -209,10 +209,10 @@ $waktu = date('H:i:s');
                             <canvas id="pzem_tegangan" style="max-height: 320px;"></canvas>
                             <select name="pzem_tegangan_filter" class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                               <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -224,10 +224,10 @@ $waktu = date('H:i:s');
                             <canvas id="pzem_arus" style="max-height: 320px;"></canvas>
                             <select name="pzem_arus_filter" class="form-control">
                                 <!-- option default disabled -->
-                                <option value="">semua data</option>
-                                <option value="7">seminggu terakhir</option>
-                                <option value="14">14 hari terakhir</option>
-                                <option value="30">1 bulan terakhir</option>
+                               <option value="">Semua Data</option>
+                                <option value="7"> 7 Data Terakhir</option>
+                                <option value="14">14 Data Terakhir</option>
+                                <option value="30">30 Data Terakhir</option>
                             </select>
                         </div>
                     </div>
