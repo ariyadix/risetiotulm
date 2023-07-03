@@ -28,6 +28,12 @@ $waktu = date('H:i:s');
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.4/sorting/date-eu.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.4/sorting/date-euro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-luxon.js"></script>
+    
+
     <!-- Firebase SDK -->
     <!-- <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script> -->
 
@@ -138,12 +144,12 @@ $waktu = date('H:i:s');
         <div class="container">
             <div class="row mt-5 table-responsive">
                 <h3>Tabel Data Aktual</h3>
-                <table id="resume" class="table align-middle" width="100%"></table>   
+                <table id="resume" class="table align-middle" width="100%"></table>
             </div>
 
             <div class="row mt-5 table-responsive">
                 <h3>Tabel Data Sensor</h3>
-                <table id="sensor" class="table align-middle" width="100%"></table>   
+                <table id="sensor" class="table align-middle" width="100%"></table>
             </div>
         </div>
     </main>
@@ -161,8 +167,6 @@ $waktu = date('H:i:s');
     </footer>
 
 
-    <!-- Google Maps JavaScript API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtlqVUt-HzvavwqmiRlwTV0SJp3prHiGE&callback=initMap" async defer></script>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Bootstrap JavaScript -->
@@ -170,6 +174,10 @@ $waktu = date('H:i:s');
 
     <!-- Time Script -->
     <script>
+        $(document).ready(function() {
+            // format by datetime like this 19/6/2023, 09.17.15
+            $.fn.dataTable.luxon('dd/MM/yyyy, HH:mm:ss');
+        });
         var tegangan_ina, arus_ina, tegangan_max, arus_max, tegangan_pzem, arus_pzem;
         var arus_dc_ina_max, arus_ac_pzem, tegangan_ac_pzem, tegangan_dc_ina_max;
         var waktu;
@@ -252,10 +260,7 @@ $waktu = date('H:i:s');
                         title: "tegangan_dc_ina_max",
                         data: "tegangan_dc_ina_max"
                     },
-                    
-                ],
-                order: [
-                    [0, "desc"]
+
                 ],
                 dom: 'Bfrtip',
                 buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5', 'print'],
@@ -263,7 +268,7 @@ $waktu = date('H:i:s');
             // table.buttons().container().appendTo("#example_wrapper .col-md-6:eq(0)");
         }
 
-        function createTableSensor(dataset){
+        function createTableSensor(dataset) {
             let tableSensor = $('#sensor').DataTable({
                 // add dropdown filter to datatable based on waktu
                 initComplete: function() {
@@ -329,7 +334,7 @@ $waktu = date('H:i:s');
             // table.buttons().container().appendTo("#example_wrapper .col-md-6:eq(0)");
         }
 
-       
+
 
         $.ajax({
             url: "https://voltagecurrent.azurewebsites.net/getalldata.php",
@@ -368,14 +373,8 @@ $waktu = date('H:i:s');
                 let table_data_lokasi2 = data.lokasi2.map(function(e) {
                     // return waktu as GMT+8
                     let waktu = new Date(e.waktu)
-                    // waktu = waktu.setTime(waktu.getTime() + (8 * 60 * 60 * 1000))
-                    waktu = new Date(waktu).toLocaleDateString('id-ID', {
-                        // timeZone: "Asia/Makassar",
-                        hour12: false,
-                        hour: "numeric",
-                        minute: "numeric",
-                        second: "numeric"
-                    })
+                    // format with luxon like this 'dd/MM/yyyy, HH:mm:ss'
+                    waktu = luxon.DateTime.fromJSDate(waktu).toFormat('dd/MM/yyyy, HH:mm:ss');
                     return {
                         waktu: waktu,
                         // parse all data to get 3 decimal and change dot to comma as separator
@@ -402,47 +401,47 @@ $waktu = date('H:i:s');
 
         // add filter function when select tag with id max471_tegangan is changed
         // then update the chart data
-        $('select[name="max_tegangan_filter"]').change(e=>{
+        $('select[name="max_tegangan_filter"]').change(e => {
             let value = e.target.value;
-            filterChartData(max_tegangan_chart ,value, tegangan_max, tegangan_dc_ina_max, waktu);
+            filterChartData(max_tegangan_chart, value, tegangan_max, tegangan_dc_ina_max, waktu);
         })
 
-        $('select[name="pzem_tegangan_filter"]').change(e=>{
+        $('select[name="pzem_tegangan_filter"]').change(e => {
             let value = e.target.value;
-            filterChartData(pzem_tegangan_chart ,value, tegangan_pzem, tegangan_ac_pzem, waktu);
+            filterChartData(pzem_tegangan_chart, value, tegangan_pzem, tegangan_ac_pzem, waktu);
         })
 
-        $('select[name="pzem_arus_filter"]').change(e=>{
+        $('select[name="pzem_arus_filter"]').change(e => {
             let value = e.target.value;
             filterChartData(pzem_arus_chart, value, arus_pzem, arus_ac_pzem, waktu);
         })
 
-        $('select[name="max_arus_filter"]').change(e=>{
+        $('select[name="max_arus_filter"]').change(e => {
             let value = e.target.value;
             filterChartData(max_arus_chart, value, arus_max, arus_dc_ina_max, waktu);
         })
 
-        $('select[name="tegangan_ina_filter"]').change(e=>{
+        $('select[name="tegangan_ina_filter"]').change(e => {
             let value = e.target.value;
             filterChartData(tegangan_ina_chart, value, tegangan_ina, tegangan_dc_ina_max, waktu);
         })
 
-        $('select[name="arus_ina_filter"]').change(e=>{
+        $('select[name="arus_ina_filter"]').change(e => {
             let value = e.target.value;
             filterChartData(arus_ina_chart, value, arus_ina, arus_dc_ina_max, waktu);
         })
 
         function filterChartData(chart, value, data1, data2, waktufilter) {
             // filter data so the data onnly contain latest data
-            data1filter = data1.filter((e,i)=>{
+            data1filter = data1.filter((e, i) => {
                 return i >= data1.length - value;
             })
-            
-            data2filter = data2.filter((e,i)=>{
+
+            data2filter = data2.filter((e, i) => {
                 return i >= data2.length - value;
             })
 
-            waktufilter = waktufilter.filter((e,i)=>{
+            waktufilter = waktufilter.filter((e, i) => {
                 return i >= waktufilter.length - value;
             })
 

@@ -136,79 +136,7 @@ $waktu = date('H:i:s');
     <!-- Content -->
     <main class="mt-3">
         <div class="container">
-            <div class="row mb-3 align-items-stretch justify-content-center">
-                <div class="col-sm-3 mb-3 mb-sm-0">
-                    <div class="card bg-primary text-white h-100">
-                        <div class="card-body">
-                            <!-- <h5 class="card-title">INA21922 (Realtime)</h5> -->
-
-                            <h5 class="card-title">Sensor INA219 (Realtime)</h5>
-                            <table>
-                                <tr>
-                                    <td>Tegangan</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_tegangan_ina"></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Arus</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_arus_ina"></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 mb-3 mb-sm-0">
-                    <div class="card bg-secondary text-white h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Sensor MAX471 (Realtime)</h5>
-                            <table>
-                                <tr>
-                                    <td>Tegangan</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_tegangan_max"></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Arus</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_arus_max"></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 mb-3 mb-sm-0">
-                    <div class="card bg-success text-white h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Sensor PZEM-004T (Realtime)</h5>
-                            <table>
-                                <tr>
-                                    <td>Tegangan</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_tegangan_pzem"></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Arus</td>
-                                    <td class="center">:</td>
-                                    <td>
-                                        <p class="card-text" id="realtime_arus_pzem"></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
             <div class="row mb-3 align-items-stretch">
                 <div class="col mb-3 mb-sm-0">
                     <div class="card bg-primary text-white h-100">
@@ -707,16 +635,7 @@ $waktu = date('H:i:s');
                 //    merge year, month, day, hour
                     return e.year + "-" + e.month + "-" + e.day + " " + e.hour + ":00";
                 });
-                console.log(waktu);
-                // isi data di tabel atas
-                $('#realtime_tegangan_ina').text("70%")
-                $('#realtime_arus_ina').text("70%")
-
-                $('#realtime_tegangan_max').text("70%")
-                $('#realtime_arus_max').text("70%")
-
-                $('#realtime_tegangan_pzem').text("70%")
-                $('#realtime_arus_pzem').text("70%")
+               
 
                 // create chart
                 updateChart(tegangan_ina_chart, waktu, tegangan_ina, tegangan_dc_ina_max);
