@@ -28,6 +28,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div class="container">
+        <div id="time" class="mx-auto"></div>
         <h2>Tambah Data Aktual</h2>
         <!-- set action to this file -->
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
